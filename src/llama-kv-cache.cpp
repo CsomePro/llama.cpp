@@ -318,7 +318,7 @@ llama_kv_cache::llama_kv_cache(
             LLAMA_LOG_WARN("%s: attention rotation force disabled (LLAMA_ATTN_ROT_DISABLE)\n", __func__);
         }
 
-        // Do not rotate scalar FP8 caches. Their static scales are calibrated on unrotated K and V.
+        // Keep FP8 caches in the basis expected by the imported scales; do not add Hadamard rotation.
         bool attn_rot_k =
             !attn_rot_disable &&
             n_embd_head_k_all > 0 &&
