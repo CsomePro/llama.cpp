@@ -289,6 +289,9 @@ endif()
 # TODO: make this test (and others) not link `libllama` as it is not needed [TAG_TESTS_LLAMA_LINK]
 llama_build(test-backend-ops.cpp)
 
+llama_build_and_test(test-kv-cache.cpp)
+target_include_directories(test-kv-cache PRIVATE ${PROJECT_SOURCE_DIR}/src)
+
 llama_build_and_test(test-tiled-mulmat.cpp)
 llama_build_and_test(test-model-load-cancel.cpp LABEL "model")
 llama_build_and_test(test-autorelease.cpp       LABEL "model")
